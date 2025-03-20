@@ -25,7 +25,7 @@ if st.button("Enviar") and pregunta:
     st.session_state["messages"].append({"role": "user", "content": pregunta})
     
     # Llamar a la API de OpenAI
-    response = openai.client.chat.completions.create(
+    response = client.chat.completions.create(
         model=model,
         messages=st.session_state["messages"],
         max_tokens=500  # Limitar tokens para optimizar costos
