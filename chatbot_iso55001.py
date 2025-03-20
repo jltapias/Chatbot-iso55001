@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # Configurar la API Key (Reemplázala con tu clave real)
-openai.api_key = "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"
+api_key = "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"
 
 # Configuración de la página
 st.set_page_config(page_title="Chatbot ISO 55001", page_icon="🤖")
@@ -31,7 +31,7 @@ if st.button("Enviar") and pregunta:
         max_tokens=500  # Limitar tokens para optimizar costos
     )
     
-    respuesta = response["choices"][0]["message"]["content"]
+    respuesta = response.choices[0].message.content
     
     # Agregar la respuesta al historial
     st.session_state["messages"].append({"role": "assistant", "content": respuesta})
