@@ -1,8 +1,11 @@
 import streamlit as st
 import openai
+import os
+
+
 
 # Configurar la API Key (Reemplázala con tu clave real)
-api_key = "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"
+client = openai.OpenAI(api_key=st.secrets("OPENAI_API_KEY"))
 
 # Configuración de la página
 st.set_page_config(page_title="Chatbot ISO 55001", page_icon="🤖")
@@ -26,12 +29,11 @@ if st.button("Enviar") and pregunta:
     
     # Llamar a la API de OpenAI
     response = client.chat.completions.create(
-        model=model,
-        messages=st.session_state["messages"],
-        max_tokens=500  # Limitar tokens para optimizar costos
+        model="gpt-4-turbo",
+        messages=[{"role": "user", "content": "Hola"}]
     )
     
-    respuesta = response.choices[0].message.content
+    print(response.choices[0].message.content)
     
     # Agregar la respuesta al historial
     st.session_state["messages"].append({"role": "assistant", "content": respuesta})
