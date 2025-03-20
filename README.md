@@ -1,0 +1,1 @@
+Esta herramienta  permite al usuario conocer un poco mas sobre Gestión de activos basado en el estudio de las normas iso 55.000 y la PAS 55 y la experiencia del autor sobre el tema aplicado en el sector de “Utilities” (Generación de nergía eléctrica, Transmisión de energía eléctrica Distribucion de energía eléctrica, Gas, Potabilización de agua y gestion de aguas residuales) 
