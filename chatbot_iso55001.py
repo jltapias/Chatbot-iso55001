@@ -2,8 +2,6 @@ import streamlit as st
 import openai
 import os
 
-
-
 # Configurar la API Key (Reemplázala con tu clave real)
 client = openai.OpenAI(api_key=st.secrets("OPENAI_API_KEY"))
 
@@ -23,17 +21,22 @@ model = st.radio("Selecciona el modelo GPT:", ("gpt-4-turbo", "gpt-3.5-turbo"))
 # Entrada del usuario
 pregunta = st.text_input("Haz una pregunta sobre la ISO 55001:")
 if st.button("Enviar") and pregunta:
+
+    #  Asegurarse de que el historial de conversación está bien definido
+    if "messages" not in st.session_state:
+        st.session_state["messages"] = []
     
     # Agregar la pregunta al historial
     st.session_state["messages"].append({"role": "user", "content": pregunta})
     
     # Llamar a la API de OpenAI
     response = client.chat.completions.create(
-        model="gpt-4-turbo",
-        messages=[{"role": "user", "content": "Hola"}]
+        model=model,
+        messages=st.session_state["messages"],
+        max_tokens=500  # Limitar tokens para optimizar costos
     )
     
-    print(response.choices[0].message.content)
+    respuesta = response.choices[0].message.content
     
     # Agregar la respuesta al historial
     st.session_state["messages"].append({"role": "assistant", "content": respuesta})
